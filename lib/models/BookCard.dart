@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BookCard extends StatelessWidget {
+  // các thuộc tính của bookcard
   final String imageUrl; // URL hình ảnh thủ công
   final String title;    // Tựa sách
   final String author;   // Tác giả

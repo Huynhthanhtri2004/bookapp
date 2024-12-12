@@ -14,22 +14,27 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  int _selectedIndex = 0;
+  // danh sách cách ảnh mẫu
   final List<String> imageUrls = [
     "https://sachgiaokhoa.vn/pub/media/catalog/product/cache/3bd4b739bad1f096e12e3a82b40e551a/t/k/tk-l9-gd-076.jpg", // Hình ảnh 1
     "https://thaycuong.net/wp-content/uploads/2024/01/sgk-kntt-tap-1-toan-9-860.jpg.webp", // Hình ảnh 2
-    "https://upload.wikimedia.org/wikipedia/commons/3/3f/JPEG_example_flower.jpg" ,//Hình 3
-    // Thêm nhiều hình ảnh nếu cần
+    "https://phonics-smart.edu.vn/wp-content/uploads/2023/02/ps4_sbt-573x800.jpg" ,//Hình 3
+    "https://nhasachphuongnam.com/images/detailed/286/hoa-hoc-lop-12-chan-troi-sang-tao.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOr7r08L7mUtqmifO1jYzkdIYu0w3jyKYgtg&s",
+    "https://sachcanhdieu.vn/wp-content/uploads/2024/04/Bia-Dia-li-12-1.jpg",
+
   ];
 
-
+  // Dịch vụ Firestore và bộ điều khiển TextField
   final FirestoreService firestoreService = FirestoreService();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController authorController = TextEditingController();
   final TextEditingController genreController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
 
-  int _selectedIndex = 0;
 
+  // Hộp thoại thêm/sửa sách
   void openBookDialog({String? docID}) {
     if (docID != null) {
       firestoreService.books.doc(docID).get().then((doc) {
@@ -107,13 +112,14 @@ class _HomepageState extends State<Homepage> {
   }
 
 
-
+  //Hàm xử lý chọn tab trong thanh điều hướng
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
+  // Hàm tạo giao diện thanh điều hướng
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,6 +152,8 @@ class _HomepageState extends State<Homepage> {
       ),
     );
   }
+
+
 
   Widget _getSelectedScreen() {
     switch (_selectedIndex) {
